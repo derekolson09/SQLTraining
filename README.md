@@ -264,7 +264,26 @@ Note that there is something more complex happening in some insertion statements
 
 "((SELECT id FROM Book WHERE Title = 'The Tempest'), (SELECT id FROM Publisher WHERE Name = 'Penguin Random House'), 1)"
 
-The first field of BookPublishers Table is the Book field. If you recall, this is a foreign key field, which means you need to populate it with a valid primary key value from the Book table. To do this, you are using a sub-query. The subquery is defined as ( SELECT id FROM Book WHERE Title = 'The Tempest' ) The evaluation of this subquery must return a single value to then be used as the foreign key for the BookPublishers Book field. This is repeated for the Publisher foreign key field as well.
+The first field of BookPublishers Table is the Book field. If you recall, this is a foreign key field, which means you need to populate it with a valid primary key value from the Book table. To do this, you are using a sub-query. The subquery is defined as ( SELECT id FROM Book WHERE Title = 'The Tempest' ) The sub-query is broken into the following:
+
+SELECT - DQL statement for getting some data
+
+id - Field name in the Book table
+
+FROM - DQL statement for determing which schema object to search through
+
+Book - Schema object title
+
+WHERE - DML statement for filtering data results returned from SELECT statement
+
+Title - Field name in the Book table
+
+= - Equivalence check
+
+'The Tempest' - Value to check for equivalence (a string in MSSQL is denoted by single quotations)
+
+
+The evaluation of this subquery must return a single value to then be used as the foreign key for the BookPublishers Book field. This is repeated for the Publisher foreign key field as well.
 
  > Challenge: You created two tables in the last section (Language and BooksLanguages). Insert the languages Chinese, English, Spanish, Hindi, Arabic, German, French and Italian in to the Language table. Also insert 3 rows into the BooksLanguages tables, mapping the book the book titled 'Harry Potter and the Philosophers Stone' to the language English where it is the primary language, and the book titled 'The Tempest' to the languages English and Spanish where english is the primary language and spanish is the secondary language.
 
