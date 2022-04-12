@@ -347,10 +347,10 @@ A where clause can have the following operators in it:
  > Note: you don't need to memorize this, this is for reference
 
 * = - Equal
-* > - Greater than
-* < - Less than
-* >= - Greater than or equal
-* <= - Less than or equal
+* &lt - Greater than
+* &gt - Less than
+* &gt= - Greater than or equal
+* &lt= - Less than or equal
 * <> - not equal
 * BETWEEN - Between a certain range
 * LIKE - Search for pattern
