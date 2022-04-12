@@ -311,4 +311,31 @@ The evaluation of this subquery must return a single value to then be used as th
 
   Look at the Database_SLN/Data/insert_lang_data.sql file
 
-<details>
+</details>
+
+
+### Query the Data - Select
+
+As you work with data it is important to be able to view what data you have and in what contexts you have them. Now that you have populated the data relations in your bookstore table you can start answering questions about your data. To do this you will use a SELECT statement, which simply returns some data from your database for you to view or use in some way. In a basic generic form it will look like this:
+
+```sql
+SELECT 
+  column1
+  ,column2
+FROM
+  table
+```
+
+To refine your query results you can use a WHERE clause, the generic form looks like:
+
+```sql
+SELECT 
+  column1
+  ,column2
+FROM
+  table
+WHERE 
+  condition
+```
+
+
