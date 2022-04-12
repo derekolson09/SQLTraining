@@ -338,4 +338,17 @@ WHERE
   condition
 ```
 
+A where clause can have the following operators in it:
+
+ > Note: you don't need to memorize this, this is for reference
+
+* = - Equal
+* > - Greater than
+* < - Less than
+* >= - Greater than or equal
+* <= - Less than or equal
+* <> - not equal
+* BETWEEN - Between a certain range
+* LIKE - Search for pattern
+* IN - To specify multiple possible values for a column
 
