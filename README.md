@@ -7,6 +7,10 @@ This repository is meant to be a starting point for learning the basics of SQL. 
 * IDE: [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15)
 * MSSQL Developer Server: [Developer Edition](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (Should be on left side if you scroll down)
 
+# Resources
+
+* [Database Schema Diagram](https://drive.google.com/file/d/1A5l0ywoPEn-FteMqX7Z0-BqoqCvVXyUd/view?usp=sharing)
+
 # Parts of the MSSQL Sub-language
 
 > Don't get too caught up on definitions, this is here for reference.
