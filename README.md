@@ -52,10 +52,87 @@ To connect to your running sql server instance from Azure Data Studio:
  CREATE DATABASE Bookstore
  ```
 
- Voila! You've now executed your first piece of SQL
+Voila! You've now executed your first piece of SQL
  
  > Question: Which SQL Sub-language was used for this?
  
 Now right click the "localhost" dropdown form the explorer panel and choose the refresh option and then open the databases folder and you should see Bookstore in it.
  
- ### Creating a couple of 
+### Creating Tables
+
+You will be creating tables that for the schema from the [Database Schema Diagram](https://drive.google.com/file/d/1A5l0ywoPEn-FteMqX7Z0-BqoqCvVXyUd/view?usp=sharing). I will break down most of the tables creation code here, and you will be challenged to setup a couple of tables yourself (don't look in the Database SLN folder unless you absolutely cannot figure it out yourself.)
+
+The first table we will create will be the base Author table. To do that, create a new query (from the new query button) and execute the following code:
+
+```sql
+CREATE TABLE Author (
+    id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT(NEWID())
+    ,FirstName VARCHAR(100) NOT NULL
+    ,MiddleName VARCHAR(100) NULL
+    ,LastName VARCHAR(100) NOT NULL
+    ,DateOfBirth DATETIME2 NULL
+    ,DateOfDeath DATETIME2 NULL
+    ,BookCount INTEGER NULL
+);
+```
+
+This code is part of the DDL syntax used to create relations in SQL. First we define what we are creating, in this case a table, then we identify the name of the table, and its schema. The UNIQUEIDENTIFIER Keyword is the datatype of the id field it is a UUID format rather than an INTEGER, and is autopopulated using the DEFAULT Keyword and passing in the output from the NEWID() function. The NEWID() function is a MSSQL Server function that generates a new UUID and returns it. The rest of the lines are defining the other fields, some of which are optional (NULL) and some are not optional (NOT NULL) meaning that when a new record is inserted into the table, the NOT NULL fields cannot be of a NULL value. The PRIMARY KEY syntax denotes that the specific field that it is executed on must be a constrained to unique value.
+
+Next you will create the other base tables by executing a new query with the following sql:
+
+```sql
+CREATE TABLE Genre (
+    id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT(NEWID()) 
+    ,Name NVARCHAR(100) NOT NULL
+    ,Description NVARCHAR(1000) NULL
+);
+
+CREATE TABLE Format (
+    id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT(NEWID())
+    ,Name NVARCHAR(30) NOT NULL
+);
+
+CREATE TABLE Address (
+    id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT(NEWID())
+    ,Address1 NVARCHAR(250) NOT NULL
+    ,Address2 NVARCHAR(250) NULL
+    ,Country NVARCHAR(250) NOT NULL
+    ,Zip INTEGER NOT NULL
+    ,StateCode NVARCHAR(2) NULL
+);
+
+CREATE TABLE Publisher (
+    id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT(NEWID())
+    ,Name NVARCHAR(250) NOT NULL
+    ,Address UNIQUEIDENTIFIER FOREIGN KEY REFERENCES [Address] (id)
+);
+
+CREATE TABLE Book (
+    id UNIQUEIDENTIFIER PRIMARY KEY NOT NULL DEFAULT(NEWID())
+    ,Title NVARCHAR(250) NOT NULL
+    ,Subtitle NVARCHAR(250) NULL
+    ,Description NVARCHAR(1000) NULL
+    ,PublicationDate DATETIME2 NOT NULL
+    ,ISBN NVARCHAR(250) NOT NULL
+    ,Genre UNIQUEIDENTIFIER FOREIGN KEY REFERENCES [Genre] (id)
+    ,Format UNIQUEIDENTIFIER FOREIGN KEY REFERENCES [Format] (id)
+    ,Copyright NVARCHAR(250) NULL
+);
+```
+
+There is something new in this section of code that you executed, you have also applied a FOREIGN KEY constraint on a few fields. Let's take the line from the CREATE TABLE Book section: "Genre UNIQUEIDENTIFIER FOREIGN KEY REFERENCES [Genre] (id)" and break it down into what is actually being conducted.
+
+Genre - Denotes the name of the field being created on the Book Table
+UNIQUEIDENTIFIER - Datatype of the Genre field
+FOREIGN KEY - Constraint on the field
+REFERENCES [Genre] (id) - Which table field from a foreign table will be constraining the Genre field within the book table. Breakdown: REFERENCES (Foreign Table Name) (Foreign Table Field Name)
+
+> Challenge: Can you come up with a way to create the two missing relations from the schema diagram?
+> <details>
+    <summary> Hint </summary>
+      Books_Languages Table
+      Language Table
+
+      If you cannot figure it out, you can go to the database_sln/Setup folder and look at the add_language_tables.sql file
+  </details>
+
