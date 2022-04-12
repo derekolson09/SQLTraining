@@ -123,9 +123,14 @@ CREATE TABLE Book (
 There is something new in this section of code that you executed, you have also applied a FOREIGN KEY constraint on a few fields. Let's take the line from the CREATE TABLE Book section: "Genre UNIQUEIDENTIFIER FOREIGN KEY REFERENCES [Genre] (id)" and break it down into what is actually being conducted.
 
 Genre - Denotes the name of the field being created on the Book Table
+ 
 UNIQUEIDENTIFIER - Datatype of the Genre field
+ 
 FOREIGN KEY - Constraint on the field
-REFERENCES [Genre] (id) - Which table field from a foreign table will be constraining the Genre field within the book table. Breakdown: REFERENCES (Foreign Table Name) (Foreign Table Field Name)
+ 
+REFERENCES [Genre] (id) - Which table field from a foreign table will be constraining the Genre field within the book table. 
+
+Breakdown: REFERENCES (Foreign Table Name) (Foreign Table Field Name)
 
 > Challenge: Can you come up with a way to create the two missing relations from the schema diagram?
 <details>
