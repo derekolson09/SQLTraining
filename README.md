@@ -139,8 +139,13 @@ Breakdown: REFERENCES (Foreign Table Name) (Foreign Table Field Name)
      Books_Languages Table
  
      Language Table
- 
-     If you cannot figure it out, you can go to the database_sln/Setup folder and look at the add_language_tables.sql file
+
+</details>
+
+<details>
+  <summary> Solution </summary>
+
+  Look at the Database_SLN/Setup/add_language_tables.sql file for the solution
 
 </details>
 
