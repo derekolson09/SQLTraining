@@ -54,7 +54,7 @@ To connect to your running sql server instance from Azure Data Studio:
 
 Voila! You've now executed your first piece of SQL
  
- > Question: Which SQL Sub-language was used for this?
+ > **Question:** Which SQL Sub-language was used for this?
  
 Now right click the "localhost" dropdown form the explorer panel and choose the refresh option and then open the databases folder and you should see Bookstore in it.
  
@@ -132,7 +132,7 @@ REFERENCES [Genre] (id) - Which table field from a foreign table will be constra
 
 Breakdown: REFERENCES (Foreign Table Name) (Foreign Table Field Name)
 
-> Challenge: Can you come up with a way to create the two missing relations from the schema diagram?
+> **Challenge:** Can you come up with a way to create the two missing relations from the schema diagram?
 <details>
    <summary> Hint </summary>
      
@@ -285,7 +285,7 @@ Title - Field name in the Book table
 
 The evaluation of this subquery must return a single value to then be used as the foreign key for the BookPublishers Book field. This is repeated for the Publisher foreign key field as well.
 
- > Challenge: You created two tables in the last section (Language and BooksLanguages). Insert the languages Chinese, English, Spanish, Hindi, Arabic, German, French and Italian in to the Language table. Also insert 3 rows into the BooksLanguages tables, mapping the book the book titled 'Harry Potter and the Philosophers Stone' to the language English where it is the primary language, and the book titled 'The Tempest' to the languages English and Spanish where english is the primary language and spanish is the secondary language.
+ > **Challenge:** You created two tables in the last section (Language and BooksLanguages). Insert the languages Chinese, English, Spanish, Hindi, Arabic, German, French and Italian in to the Language table. Also insert 3 rows into the BooksLanguages tables, mapping the book the book titled 'Harry Potter and the Philosophers Stone' to the language English where it is the primary language, and the book titled 'The Tempest' to the languages English and Spanish where english is the primary language and spanish is the secondary language.
 
 <details>
   <summary> Hint 1 </summary>
