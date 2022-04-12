@@ -318,6 +318,8 @@ The evaluation of this subquery must return a single value to then be used as th
 
 As you work with data it is important to be able to view what data you have and in what contexts you have them. Now that you have populated the data relations in your bookstore table you can start answering questions about your data. To do this you will use a SELECT statement, which simply returns some data from your database for you to view or use in some way. In a basic generic form it will look like this:
 
+#### SELECT
+
 ```sql
 SELECT 
   column1
@@ -325,6 +327,8 @@ SELECT
 FROM
   table
 ```
+
+#### WHERE
 
 To refine your query results you can use a WHERE clause, the generic form looks like:
 
@@ -352,3 +356,35 @@ A where clause can have the following operators in it:
 * LIKE - Search for pattern
 * IN - To specify multiple possible values for a column
 
+#### ORDER BY
+To sort the results from a query you can use the ORDER BY clause. The generic form looks like:
+
+```sql
+SELECT 
+  column1
+  ,column2
+FROM
+  table
+WHERE 
+  condition
+ORDER BY
+  column1 ASC | DSC
+```
+
+The ASC stands for ascending and DSC stands for descending. They are keywords for defining order.
+
+
+#### INNER JOIN
+
+
+#### LEFT JOIN
+
+
+#### RIGHT JOIN
+
+
+#### FULL JOIN
+
+#### UNION
+
+#### GROUP BY
