@@ -128,11 +128,14 @@ FOREIGN KEY - Constraint on the field
 REFERENCES [Genre] (id) - Which table field from a foreign table will be constraining the Genre field within the book table. Breakdown: REFERENCES (Foreign Table Name) (Foreign Table Field Name)
 
 > Challenge: Can you come up with a way to create the two missing relations from the schema diagram?
-> <details>
-    <summary> Hint </summary>
-      Books_Languages Table
-      Language Table
+<details>
+   <summary> Hint </summary>
+     
+     Books_Languages Table
+ 
+     Language Table
+ 
+     If you cannot figure it out, you can go to the database_sln/Setup folder and look at the add_language_tables.sql file
 
-      If you cannot figure it out, you can go to the database_sln/Setup folder and look at the add_language_tables.sql file
-  </details>
+</details>
 
