@@ -1,6 +1,6 @@
 /*
 TEST CODE
-EXEC IdsReport.BookSummary_Pull 
+EXEC Report.BookSummary_Pull 
 	''
 	,'Tolkein'
 	,''
