@@ -62,7 +62,7 @@ Now right click the "localhost" dropdown form the explorer panel and choose the 
 
 You will be creating tables that for the schema from the [Database Schema Diagram](https://drive.google.com/file/d/1A5l0ywoPEn-FteMqX7Z0-BqoqCvVXyUd/view?usp=sharing). I will break down most of the tables creation code here, and you will be challenged to setup a couple of tables yourself (don't look in the Database SLN folder unless you absolutely cannot figure it out yourself.)
 
-The first table we will create will be the base Author table. To do that, create a new query (from the new query button) and execute the following code:
+The first table we will create will be the base Author table. To do that, select the 'Bookstore' database from the dropdown in the top center of azure data studio. It should say master in it, then create a new query (from the new query button) and execute the following code:
 
 ```sql
 CREATE TABLE Author (
