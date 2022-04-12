@@ -375,13 +375,28 @@ The ASC stands for ascending and DSC stands for descending. They are keywords fo
 
 
 #### INNER JOIN
+To join two tables on a primary key only where the primary keys are equivalent, use an INNER JOIN. The generic form looks like:
 
+```sql
+SELECT 
+  t1.column1
+  ,t2.column2
+FROM
+  table t1
+INNER JOIN 
+  table t2
+ON t1.column1 = t2.column2
+WHERE 
+  condition
+ORDER BY
+  column1 ASC | DSC
+```
+
+Note that with this query we use table aliases (t1, t2). The table aliases were determined in the from clause and the inner join clause. They are used to differentiate two different table fields that may have the same table name. You do this to make sure that the columns being selected aren't ambiguous. An inner join is like a theta join in relational algebra.
 
 #### LEFT JOIN
 
-
 #### RIGHT JOIN
-
 
 #### FULL JOIN
 
