@@ -144,3 +144,147 @@ Breakdown: REFERENCES (Foreign Table Name) (Foreign Table Field Name)
 
 </details>
 
+### Populating Data
+
+Now that you have built out all the tables in the database, it would be nice to actually have stuff in them. To do this you will use a basic INSERT INTO statement. Again, start witht the Author table. Execute the following sql in a new query:
+
+```sql
+/**
+* SOURCE: https://en.wikipedia.org/wiki/List_of_best-selling_fiction_authors
+**/
+INSERT INTO Author (
+    FirstName
+    ,MiddleName
+    ,LastName
+    ,DateOfBirth 
+    ,DateOfDeath
+    ,BookCount
+)
+VALUES
+    ('William', NULL, 'Shakespeare', '1904-01-22', '1904-04-23', 42)
+    ,('Agatha', NULL, 'Christie', '1904-05-11', '1976-01-12', 85)
+    ,('J.', 'K.', 'Rowling', '1973-10-03', NULL, 15)
+    ,('R.', 'L.', 'Stine', '1943-10-08', NULL, 430)
+    ,('Corín', NULL, 'Tellado', '1927-04-25', '2009-04-11', 4000)
+    ,('J.', 'R. R.', 'Tolkein', '1904-01-03', '1973-09-02', 36)
+```
+
+What is happening here is we are defining the table we want to insert multiple rows into. The VALUES statement denotes each row as a comma dilimited list within a parenthesis pair, each row is separated by a comma outside the parenthesis pair.
+
+Go ahead and add some more data by executing:
+
+```sql
+INSERT INTO Genre (
+    Name
+    ,Description
+)
+VALUES 
+    ('Plays', NULL)
+    ,('Poetry', NULL)
+    ,('Whodunits', NULL)
+    ,('Fantasy', NULL)
+    ,('Crime Fiction', NULL)
+    ,('Horror', NULL)
+    ,('Comedy', NULL)
+    ,('Romance', NULL)
+
+INSERT INTO Format (
+    Name
+)
+VALUES
+    ('Hard Cover')
+    ,('Paperback')
+    ,('Pdf')
+    ,('eBook')
+
+INSERT INTO Address (
+    Address1
+    ,Address2
+    ,Country
+    ,Zip
+    ,StateCode
+)
+VALUES 
+    ('400 Bennett Cerf Drive', NULL, 'United States', 21157, 'MD')
+    ,('58 Rue Jean Bleuzen', NULL, 'France', 92170, NULL)
+    ,('195 Broadway new York City', NULL, 'United States', 10007, 'NY')
+    ,('120 Broadway new York City', NULL, 'United States', 10271, 'NY')
+    ,('1230 Avenue of the Americas new York City', NULL, 'United States', 10020, 'NY')
+
+INSERT INTO Publisher (
+    Name
+    ,Address
+)
+    VALUES
+    ('Penguin Random House', (SELECT id FROM Address WHERE Address1 = '400 Bennett Cerf Drive'))
+    ,('Hachette Livre', (SELECT id FROM Address WHERE Address1 = '58 Rue Jean Bleuzen'))
+    ,('HarperCollins', (SELECT id FROM Address WHERE Address1 = '195 Broadway new York City'))
+    ,('Macmillan Publishers', (SELECT id FROM Address WHERE Address1 = '120 Broadway new York City'))
+    ,('Simon & Schuster', (SELECT id FROM Address WHERE Address1 = '1230 Avenue of the Americas new York City'))
+
+INSERT INTO Book (
+    Title 
+    ,Subtitle 
+    ,Description 
+    ,PublicationDate 
+    ,ISBN
+    ,Genre 
+    ,Format 
+    ,Copyright
+)
+    VALUES
+    ('The Tempest', NULL, NULL, '1904-01-01', '9780174435686', (SELECT id FROM Genre WHERE Name = 'Plays'), (SELECT id FROM Format WHERE Name='Hard Cover'), NULL) -- Shakespeare
+    ,('The Thirteen Problems', NULL, NULL, '1932-07-01', '9780006162742', (SELECT id FROM Genre WHERE Name = 'Crime Fiction'), (SELECT id FROM Format WHERE Name='Paperback'), NULL) -- Agatha Christie
+    ,('Harry Potter and the Philosophers Stone', NULL, NULL, '1997-06-26', '9780939173341', (SELECT id FROM Genre WHERE Name = 'Fantasy'), (SELECT id FROM Format WHERE Name='Paperback'), NULL) -- JK
+    ,('The Fellowship of the Ring', NULL, NULL, '1954-07-29', '9780007171972', (SELECT id FROM Genre WHERE Name = 'Fantasy'), (SELECT id FROM Format WHERE Name='Paperback'), NULL) -- Tolkein
+
+INSERT INTO BooksAuthors (
+    Book 
+    ,Author 
+    ,IsMainAuthor 
+)
+    VALUES
+    ((SELECT id FROM Book WHERE Title = 'The Tempest'), (SELECT id FROM Author WHERE LastName = 'Shakespeare'), 1)
+    ,((SELECT id FROM Book WHERE Title = 'The Thirteen Problems'), (SELECT id FROM Author WHERE LastName = 'Christie'), 1)
+    ,((SELECT id FROM Book WHERE Title = 'Harry Potter and the Philosophers Stone'), (SELECT id FROM Author WHERE LastName = 'Rowling'), 1)
+    ,((SELECT id FROM Book WHERE Title = 'The Fellowship of the Ring'), (SELECT id FROM Author WHERE LastName = 'Tolkein'), 1)
+INSERT INTO BookPublishers (
+    Book
+    ,Publisher
+    ,IsMainPublisher
+)
+    VALUES
+    ((SELECT id FROM Book WHERE Title = 'The Tempest'), (SELECT id FROM Publisher WHERE Name = 'Penguin Random House'), 1)
+    ,((SELECT id FROM Book WHERE Title = 'The Thirteen Problems'), (SELECT id FROM Publisher WHERE Name = 'Hachette Livre'), 1)
+    ,((SELECT id FROM Book WHERE Title = 'Harry Potter and the Philosophers Stone'), (SELECT id FROM Publisher WHERE Name = 'Penguin Random House'), 1)
+    ,((SELECT id FROM Book WHERE Title = 'The Fellowship of the Ring'), (SELECT id FROM Publisher WHERE Name = 'HarperCollins'), 1)
+```
+
+Note that there is something more complex happening in some insertion statements like the one into the BookPublishers table. If you look at the first row we are inserting:
+
+"((SELECT id FROM Book WHERE Title = 'The Tempest'), (SELECT id FROM Publisher WHERE Name = 'Penguin Random House'), 1)"
+
+The first field of BookPublishers Table is the Book field. If you recall, this is a foreign key field, which means you need to populate it with a valid primary key value from the Book table. To do this, you are using a sub-query. The subquery is defined as ( SELECT id FROM Book WHERE Title = 'The Tempest' ) The evaluation of this subquery must return a single value to then be used as the foreign key for the BookPublishers Book field. This is repeated for the Publisher foreign key field as well.
+
+ > Challenge: You created two tables in the last section (Language and BooksLanguages). Insert the languages Chinese, English, Spanish, Hindi, Arabic, German, French and Italian in to the Language table. Also insert 3 rows into the BooksLanguages tables, mapping the book the book titled 'Harry Potter and the Philosophers Stone' to the language English where it is the primary language, and the book titled 'The Tempest' to the languages English and Spanish where english is the primary language and spanish is the secondary language.
+
+<details>
+  <summary> Hint 1 </summary>
+
+  First insert the languages into the languages table, then insert the rows into the BooksLanguages table. 
+
+</details>
+
+<details>
+  <summary> Hint 2 </summary>
+
+  For the BooksLanguages table, take a look at how the insertions are done for the BookPublishers table, it should be relatively similar
+
+</details>
+
+<details>
+  <summary> Solution </summary>
+
+  Look at the Database_SLN/Data/insert_lang_data.sql file
+
+<details>
