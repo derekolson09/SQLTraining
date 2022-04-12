@@ -53,3 +53,5 @@ To connect to your running sql server instance from Azure Data Studio:
  > Question: Which SQL Sub-language was used for this?
  
 Now right click the "localhost" dropdown form the explorer panel and choose the refresh option and then open the databases folder and you should see Bookstore in it.
+ 
+ ### Creating a couple of 
