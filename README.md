@@ -42,10 +42,14 @@ To connect to your running sql server instance from Azure Data Studio:
  
  This is actually rather simple to do. First, select the server you have created called "localhost" in the explorer panel, and there should be a "new query button" in the center top of the screen (next to new notebook and restore buttons). Select the new query button. You should see that you are connected to the master database in a dropdown menu (a default database instance used by sql server to manage databases).
  
- Write and execute the following query on the master database
+ Write and execute (either press the f5 key or the run button) the following query on the master database
  
  ```sql
  CREATE DATABASE Bookstore
  ```
 
+ Voila! You've now executed your first piece of SQL
+ 
+ > Question: Which SQL Sub-language was used for this?
+ 
 Now right click the "localhost" dropdown form the explorer panel and choose the refresh option and then open the databases folder and you should see Bookstore in it.
