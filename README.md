@@ -532,6 +532,49 @@ ORDER BY
       l.[Name]
   ```
 
+  If you do not understand what is going on here, you are essentially executing the sub-query within the where clause first, which will return a single result 'The Tempest' by getting all the distinct book titles that have more than one language associated with them. Then you are applying that condition to the outer query to get the language fields associated with 'The Tempest'. Then you apply an order by clause to ensure the sort order returned within the record set. 
+
+  The Subquery
+  ```sql
+  SELECT
+      b.[Title]
+  FROM
+      [Book] b
+  INNER JOIN BooksLanguages bl
+      ON b.[id] = bl.[Book]
+  INNER JOIN Language l
+      ON bl.[Language] = l.[id]
+  GROUP BY
+      b.[Title]
+  HAVING COUNT(b.[Title]) > 1
+  ```
+
+  > Note The group by clause removes duplicates
+  
+  Returns 
+
+  **Title**|
+  :-----:|
+  The Tempest| 
+
+  Which is then applied to the where clause of the outer query
+
+  ```sql
+  SELECT
+    b.[Title]
+    ,l.[Name]
+  FROM
+    [Book] b
+  INNER JOIN BooksLanguages bl
+    ON b.[id] = bl.[Book]
+  INNER JOIN Language l
+    ON bl.[Language] = l.[id]
+  WHERE
+    b.[Title] = 'The Tempest'
+  ORDER BY
+    l.[Name]
+  ```
+
 </details>
 
 > 3) Which authors books are available in paper back? Your result should include the first and last name of the author, the title of the book and the name of the publishing company. It should not have any null values.
