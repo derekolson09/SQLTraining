@@ -396,10 +396,75 @@ Note that with this query we use table aliases (t1, t2). The table aliases were 
 
 #### LEFT JOIN
 
+Joins two tables on a primary key, but unlike the INNER JOIN it returns all records from the left table (the first table defined in the select statement) and the mathed records from the right table. This returns 0 records from the right table if there are no primary key matches. The generic form looks like:
+
+```sql
+SELECT 
+  t1.column1
+  ,t2.column2
+FROM
+  table t1
+LEFT JOIN 
+  table t2
+ON t1.column1 = t2.column2
+```
+
 #### RIGHT JOIN
+
+A RIGHT JOIN is just like a LEFT JOIN but in the opposite direction. The generic form looks like:
+
+```sql
+SELECT 
+  t1.column1
+  ,t2.column2
+FROM
+  table t1
+LEFT JOIN 
+  table t2
+ON t1.column1 = t2.column2
+```
 
 #### FULL JOIN
 
+A FULL JOIN is the equivalent to a FULL OUTER JOIN where it returns all records where there is a match in the left table and the right table records. You can think of it as returning all possible values. This is a fully materialized result which makes it the longest of the described joins thus far since it is similar to a cross multiplication in relational algebra. The generic form looks like:
+
+```sql
+SELECT 
+  t1.column1
+  ,t2.column2
+FROM
+  table t1
+FULL JOIN 
+  table t2
+ON t1.column1 = t2.column2
+WHERE 
+  condition
+```
+
 #### UNION
 
+A UNION combines the result sets of two or more SELECT statements. Each SELECT within a UNION must have the same amount of fields in them. The fields must have equivalent data types and they must be in the same order. A generic form will look like:
+
+```sql
+SELECT column1 FROM table1
+UNION
+SELECT column2 FROM table2;
+```
+
 #### GROUP BY
+
+A group by statement will group rows of the same value into aggregate rows. It is also used alongside aggregate functions such as COUNT(), MAX() etc. to grtoup the results by one or more columns. A generic form looks like:
+
+```sql
+SELECT 
+  column1
+  ,MAX(column2)
+FROM
+  table
+WHERE 
+  condition
+GROUP BY
+  column1
+ORDER BY
+  column1 ASC | DSC
+```
