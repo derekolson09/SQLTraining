@@ -492,15 +492,45 @@ ORDER BY
 
 </details>
 
-> 2) Which book has more than one language? Your result set should include the book title as well as the languages it is published in, and should be sorted with the primary language as the first record returned.
+> 2) Which books have more than one language? Your result set should include the book title as well as the languages it is published in, and should be sorted with the primary language as the first record returned.
 
 <details>
   <summary> Hint Challenge 2 </summary>
+  
+  First off, this is more difficult, and requires the use of a subquery within the where clause. This subquery requires the use of a group by clause and a having clause (which was not explained above but you can google it to find more about it)
 
 </details>
 
 <details>
   <summary> Solution Challenge 2 </summary>
+
+  ```sql
+  SELECT
+    b.[Title]
+    ,l.[Name]
+  FROM
+    [Book] b
+  INNER JOIN BooksLanguages bl
+    ON b.[id] = bl.[Book]
+  INNER JOIN Language l
+    ON bl.[Language] = l.[id]
+  WHERE
+  b.[Title] = (
+      SELECT
+          b.[Title]
+      FROM
+          [Book] b
+      INNER JOIN BooksLanguages bl
+          ON b.[id] = bl.[Book]
+      INNER JOIN Language l
+          ON bl.[Language] = l.[id]
+      GROUP BY
+          b.[Title]
+      HAVING COUNT(b.[Title]) > 1
+  )
+  ORDER BY
+      l.[Name]
+  ```
 
 </details>
 
