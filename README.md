@@ -1,6 +1,6 @@
 # SQLTraining - Overview
 
-This repository is meant to be a starting point for learning the basics of SQL. Included in it is practice using joins, transact sql, selections, stored procedures, views. It will be rather extensive. This is specific for MSSQL Server. This tutorial is based off using Windows OS, but can be altered to Unix systems accordingly, you will just have to do a bit of googleing.
+This repository is meant to be a starting point for learning the basics of SQL. Included in it is practice using joins, transact sql, selections, stored procedures, views. It will be rather extensive but not exhaustive. This is specific for MSSQL Server. This tutorial is based off using Windows OS, but can be altered to Unix systems accordingly, you will just have to do a bit of googleing.
 
 # Tool Recommendations
 
@@ -468,3 +468,30 @@ GROUP BY
 ORDER BY
   column1 ASC | DSC
 ```
+
+> **Challenges:** Using the tables that exist in the database answer the following questions with a select statement:
+
+> 1) How many unique books are there? Return a count, and alias the result name using the keyword AS (google if you need it to see how to alias a field name in a result)
+
+<details>
+  <summary> Hint Challenge 1 </summary>
+
+  You should use the keyword COUNT with a single column along with the keyword AS to alias the column
+
+</details>
+
+<details>
+  <summary> Solution Challenge 1 </summary>
+  
+  ```sql
+  SELECT 
+      COUNT([Title]) AS 'Unique Books'
+  FROM
+  dbo.[Book]
+  ```
+
+</details>
+
+> 2) Which book has more than one language?
+
+> 3) 
