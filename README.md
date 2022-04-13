@@ -518,7 +518,7 @@ ORDER BY
 
   ```sql
   SELECT
-    a.[FirstName] + ' ' + a.[LastName] AS 'Name'
+    a.[FirstName] + ' ' + a.[LastName] AS 'Author'
     ,b.[Title]
     ,p.[Name]
   FROM

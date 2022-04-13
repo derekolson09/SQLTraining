@@ -1,7 +1,7 @@
 /** Which authors books are available in paper back*/
 
 SELECT
-    a.[FirstName] + ' ' + a.[LastName] AS 'Name'
+    a.[FirstName] + ' ' + a.[LastName] AS 'Author'
     ,b.[Title]
     ,p.[Name]
 FROM
