@@ -504,7 +504,7 @@ ORDER BY
 
 </details>
 
-> 3) Which authors books are available in paper back? Your result should include the first and last name of the author, the title of the book and the name of the publishing company.
+> 3) Which authors books are available in paper back? Your result should include the first and last name of the author, the title of the book and the name of the publishing company. It should not have any null values.
 
 <details>
   <summary> Hint Challenge 3 </summary>
