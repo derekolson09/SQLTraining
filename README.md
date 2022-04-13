@@ -485,13 +485,55 @@ ORDER BY
   
   ```sql
   SELECT 
-      COUNT([Title]) AS 'Unique Books'
+    COUNT([Title]) AS 'Unique Books'
   FROM
-  dbo.[Book]
+    dbo.[Book]
   ```
 
 </details>
 
-> 2) Which book has more than one language?
+> 2) Which book has more than one language? Your result set should include the book title as well as the languages it is published in, and should be sorted with the primary language as the first record returned.
 
-> 3) 
+<details>
+  <summary> Hint Challenge 2 </summary>
+
+</details>
+
+<details>
+  <summary> Solution Challenge 2 </summary>
+
+</details>
+
+> 3) Which authors books are available in paper back? Your result should include the first and last name of the author, the title of the book and the name of the publishing company.
+
+<details>
+  <summary> Hint Challenge 3 </summary>
+
+  This will require the use of at least 5 inner joins and one where clause.
+
+</details>
+
+<details>
+  <summary> Solution Challenge 3 </summary>
+
+  ```sql
+  SELECT
+    a.[FirstName] + ' ' + a.[LastName] AS 'Name'
+    ,b.[Title]
+    ,p.[Name]
+  FROM
+      [Book] b
+  INNER JOIN [BookPublishers] bp
+      ON b.[id] = bp.Book
+  INNER JOIN [Publisher] p
+      ON bp.[Publisher] = p.[id]
+  INNER JOIN [BooksAuthors] ba
+      ON b.[id] = ba.[Book]
+  INNER JOIN [Author] a
+      ON ba.[Author] = a.[id]
+  INNER JOIN [Format] f
+      ON b.[Format] = f.[id]
+  WHERE f.Name = 'Paperback'
+  ```
+
+</details>
